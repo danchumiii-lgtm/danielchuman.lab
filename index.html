@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Daniel Chumán Alvarado — Técnico en Laboratorio Clínico</title>
+<meta name="description" content="Técnico en Laboratorio Clínico con título a nombre de la Nación (MINEDU). Precisión, bioseguridad y control de calidad de la toma al resultado. Piura, Perú." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#08090A;
+    --bg-2:#0C0D0E;
+    --text:#F7F8F8;
+    --muted:#8A8F98;
+    --faint:#62666D;
+    --border:rgba(255,255,255,0.08);
+    --border-strong:rgba(255,255,255,0.14);
+    --accent:#6E79D6;
+    --accent-2:#8B96FF;
+    --cyan:#5BC8D6;
+    --panel:rgba(255,255,255,0.018);
+    --maxw:1080px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  ::selection{background:rgba(110,121,214,.35)}
+  :focus-visible{outline:2px solid var(--accent-2);outline-offset:3px;border-radius:4px}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .mono{font-family:'JetBrains Mono',monospace;font-variant-ligatures:none}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--muted);display:inline-flex;align-items:center;gap:9px;
+  }
+  .eyebrow::before{content:"";width:18px;height:1px;background:var(--border-strong)}
+
+  /* ---------- ambient + nav ---------- */
+  .glow{position:fixed;inset:0;z-index:0;pointer-events:none}
+  .glow::before{
+    content:"";position:absolute;top:-30%;left:50%;transform:translateX(-50%);
+    width:1100px;height:700px;
+    background:radial-gradient(closest-side,rgba(110,121,214,.18),rgba(110,121,214,0) 70%);
+    filter:blur(20px);
+  }
+  .glow::after{
+    content:"";position:absolute;top:8%;right:-8%;
+    width:520px;height:520px;
+    background:radial-gradient(closest-side,rgba(91,200,214,.10),transparent 70%);
+    filter:blur(10px);
+  }
+  .grid-fade{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+    background-size:64px 64px;
+    -webkit-mask-image:radial-gradient(ellipse 80% 50% at 50% 0%,#000 10%,transparent 70%);
+            mask-image:radial-gradient(ellipse 80% 50% at 50% 0%,#000 10%,transparent 70%);
+    opacity:.5;
+  }
+  main,nav{position:relative;z-index:1}
+
+  nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(12px);
+    background:rgba(8,9,10,.55);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s,background .3s;
+  }
+  nav.scrolled{border-bottom:1px solid var(--border);background:rgba(8,9,10,.8)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:14.5px;letter-spacing:-.01em}
+  .dot{width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,var(--accent-2),var(--cyan));box-shadow:0 0 12px rgba(110,121,214,.7)}
+  .navlinks{display:flex;gap:30px}
+  .navlinks a{font-size:13.5px;color:var(--muted);transition:color .2s}
+  .navlinks a:hover{color:var(--text)}
+  .navcta{
+    font-size:13px;font-weight:500;padding:7px 15px;border-radius:8px;
+    border:1px solid var(--border-strong);color:var(--text);transition:.2s;
+  }
+  .navcta:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.25)}
+  @media(max-width:720px){.navlinks{display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{padding:108px 0 70px}
+  .hero h1{
+    font-size:clamp(44px,8.5vw,84px);font-weight:800;letter-spacing:-.035em;line-height:.98;
+    margin:22px 0 0;
+    background:linear-gradient(180deg,#fff 30%,#b9bcc4);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero .role{font-size:clamp(18px,3vw,23px);font-weight:500;color:var(--muted);letter-spacing:-.01em;margin-top:14px}
+  .hero .lede{max-width:560px;margin-top:22px;font-size:17px;color:#c4c7cd;line-height:1.6}
+  .hero .lede b{color:var(--text);font-weight:600}
+  .contacts{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+  .chip{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13.5px;color:var(--muted);
+    border:1px solid var(--border);border-radius:9px;padding:8px 13px;
+    background:var(--panel);transition:.2s;
+  }
+  .chip:hover{color:var(--text);border-color:var(--border-strong);transform:translateY(-1px)}
+  .chip svg{width:15px;height:15px;opacity:.7}
+
+  /* ---------- stats ---------- */
+  .stats{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    border:1px solid var(--border);border-radius:16px;overflow:hidden;
+    background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));
+    margin-top:8px;
+  }
+  .stat{padding:30px 28px;border-right:1px solid var(--border);position:relative}
+  .stat:last-child{border-right:none}
+  .stat .num{
+    font-family:'JetBrains Mono',monospace;font-weight:600;
+    font-size:clamp(34px,5.5vw,48px);letter-spacing:-.02em;line-height:1;
+    background:linear-gradient(135deg,#fff,var(--accent-2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .stat .num .u{font-size:.46em;color:var(--muted);-webkit-text-fill-color:var(--muted);margin-left:4px}
+  .stat .lab{margin-top:12px;font-size:13px;color:var(--muted);line-height:1.4}
+  .stat .src{margin-top:7px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:var(--faint);text-transform:uppercase}
+  @media(max-width:720px){
+    .stats{grid-template-columns:1fr}
+    .stat{border-right:none;border-bottom:1px solid var(--border)}
+    .stat:last-child{border-bottom:none}
+  }
+
+  /* ---------- sections ---------- */
+  section{padding:78px 0}
+  .sec-head{margin-bottom:42px;max-width:600px}
+  .sec-head h2{font-size:clamp(26px,4vw,34px);font-weight:700;letter-spacing:-.025em;margin-top:16px;line-height:1.1}
+  .sec-head p{color:var(--muted);margin-top:14px;font-size:16px}
+
+  /* about */
+  .about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:start}
+  .about-grid p{font-size:16.5px;color:#c8cbd1;line-height:1.7}
+  .about-grid p + p{margin-top:18px}
+  .focus-card{border:1px solid var(--border);border-radius:14px;background:var(--panel);padding:24px}
+  .focus-card .ft{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .focus-list{margin-top:16px;display:flex;flex-direction:column;gap:13px}
+  .focus-list .fi{display:flex;gap:11px;font-size:14.5px;color:#d2d5da;align-items:baseline}
+  .focus-list .fi::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent-2);flex:none;transform:translateY(-2px)}
+  @media(max-width:780px){.about-grid{grid-template-columns:1fr;gap:30px}}
+
+  /* timeline */
+  .tl{position:relative;padding-left:30px}
+  .tl::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:linear-gradient(var(--border-strong),var(--border) 40%,transparent)}
+  .ev{position:relative;padding-bottom:40px}
+  .ev:last-child{padding-bottom:0}
+  .ev::before{
+    content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--accent);box-shadow:0 0 0 4px rgba(110,121,214,.12);
+  }
+  .ev .when{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em;color:var(--accent-2)}
+  .ev h3{font-size:18px;font-weight:600;letter-spacing:-.01em;margin-top:7px}
+  .ev .org{color:var(--muted);font-size:14.5px;margin-top:3px}
+  .ev p{color:#aeb2b9;font-size:14.5px;margin-top:11px;max-width:620px;line-height:1.6}
+  .tag{
+    display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.05em;
+    color:var(--cyan);border:1px solid rgba(91,200,214,.25);background:rgba(91,200,214,.05);
+    border-radius:6px;padding:3px 8px;margin:12px 7px 0 0;
+  }
+
+  /* credentials */
+  .creds{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .cred{
+    border:1px solid var(--border);border-radius:14px;background:var(--panel);
+    padding:22px 24px;transition:.25s var(--ease);position:relative;overflow:hidden;
+  }
+  .cred:hover{border-color:var(--border-strong);background:rgba(255,255,255,.03);transform:translateY(-2px)}
+  .cred.feat{grid-column:1 / -1;background:linear-gradient(120deg,rgba(110,121,214,.10),rgba(91,200,214,.04) 70%,transparent);border-color:rgba(110,121,214,.3)}
+  .cred .yr{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);letter-spacing:.05em}
+  .cred h3{font-size:16.5px;font-weight:600;letter-spacing:-.01em;margin-top:9px;line-height:1.25}
+  .cred .by{color:var(--muted);font-size:13.5px;margin-top:5px}
+  .cred .meta{margin-top:14px;display:flex;flex-wrap:wrap;gap:7px}
+  .cred .meta span{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.04em;color:var(--faint);border:1px solid var(--border);border-radius:5px;padding:3px 8px}
+  .cred.feat h3{font-size:19px}
+  .badge{display:inline-flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-2);margin-bottom:4px}
+  .badge .sq{width:6px;height:6px;background:var(--accent-2);border-radius:1px;box-shadow:0 0 8px var(--accent-2)}
+  @media(max-width:680px){.creds{grid-template-columns:1fr}}
+
+  /* skills */
+  .skills{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .skg{border:1px solid var(--border);border-radius:13px;padding:20px;background:var(--panel)}
+  .skg .h{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .skg ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .skg li{font-size:14px;color:#cfd2d8}
+  @media(max-width:860px){.skills{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:460px){.skills{grid-template-columns:1fr}}
+
+  /* footer cta */
+  .cta{padding:96px 0 60px;text-align:center}
+  .cta h2{font-size:clamp(30px,5vw,46px);font-weight:800;letter-spacing:-.03em;line-height:1.05;
+    background:linear-gradient(180deg,#fff,#b9bcc4);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .cta p{color:var(--muted);margin:18px auto 0;max-width:440px;font-size:16px}
+  .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;font-size:14.5px;font-weight:500;
+    padding:12px 22px;border-radius:10px;transition:.22s var(--ease);
+  }
+  .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;box-shadow:0 6px 30px rgba(110,121,214,.35)}
+  .btn.primary:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(110,121,214,.5)}
+  .btn.ghost{border:1px solid var(--border-strong);color:var(--text)}
+  .btn.ghost:hover{background:rgba(255,255,255,.05)}
+  .btn.whatsapp{border:1px solid rgba(37,211,102,.4);color:var(--text);background:rgba(37,211,102,.06)}
+  .btn.whatsapp:hover{background:rgba(37,211,102,.12);border-color:rgba(37,211,102,.6);transform:translateY(-2px)}
+  .btn.whatsapp svg{color:#25D366}
+  footer{border-top:1px solid var(--border);padding:26px 0;color:var(--faint);font-size:13px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  footer .mono{font-size:12px}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto!important}
+    .reveal{opacity:1;transform:none;transition:none}
+  }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="grid-fade"></div>
+
+  <nav id="nav">
+    <div class="wrap">
+      <div class="brand"><span class="dot"></span> Daniel Chumán</div>
+      <div class="navlinks">
+        <a href="#sobre">Perfil</a>
+        <a href="#experiencia">Experiencia</a>
+        <a href="#credenciales">Credenciales</a>
+        <a href="#habilidades">Aptitudes</a>
+      </div>
+      <a class="navcta" href="mailto:danchumiii@gmail.com?subject=Contacto%20desde%20tu%20portafolio%20web">Contactar</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HERO -->
+    <header class="hero">
+      <div class="wrap">
+        <span class="eyebrow reveal">Técnico en Laboratorio Clínico · Piura, Perú</span>
+        <h1 class="reveal">Daniel Chumán<br>Alvarado</h1>
+        <p class="role reveal">Del análisis preanalítico al resultado confiable.</p>
+        <p class="lede reveal">Técnico titulado <b>a nombre de la Nación</b> en laboratorio clínico y anatomía patológica. Trabajo con muestras de pacientes jóvenes y geriátricos aplicando <b>bioseguridad</b> y <b>control de calidad</b> en cada etapa.</p>
+        <div class="contacts reveal">
+          <a class="chip" href="mailto:danchumiii@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            danchumiii@gmail.com
+          </a>
+          <a class="chip" href="tel:+51991554289">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+            991 554 289
+          </a>
+          <span class="chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Piura, Perú
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <!-- STATS -->
+    <section style="padding-top:0" aria-label="Métricas destacadas">
+      <div class="wrap">
+        <div class="stats reveal">
+          <div class="stat">
+            <div class="num">19<span class="u">/20</span></div>
+            <div class="lab">Promedio académico en diplomado internacional</div>
+            <div class="src">FACOP · SINERGIA</div>
+          </div>
+          <div class="stat">
+            <div class="num">1320<span class="u">h</span></div>
+            <div class="lab">Horas de especialización en diplomados acreditados</div>
+            <div class="src">720 h + 600 h</div>
+          </div>
+          <div class="stat">
+            <div class="num">05<span class="u">+</span></div>
+            <div class="lab">Credenciales y diplomas, con título a nombre de la Nación</div>
+            <div class="src">MINEDU · 2024</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section id="sobre">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">Perfil</span>
+          <h2>Precisión, criterio y atención al detalle.</h2>
+        </div>
+        <div class="about-grid">
+          <div class="reveal">
+            <p>Soy técnico en laboratorio clínico con una motivación constante por aprender. Manejo técnicas de hematología y bioquímica, además de la preparación y el procesamiento de muestras biológicas, con uso de equipos y aplicación de normas de bioseguridad.</p>
+            <p>Realizo control de calidad para asegurar resultados confiables y mantengo precisión en el registro y la documentación de datos. Me caracterizo por una alta atención al detalle, el trabajo en equipo y una actitud resolutiva orientada al pensamiento crítico, manteniendo siempre la ética profesional y la confidencialidad.</p>
+          </div>
+          <div class="focus-card reveal">
+            <div class="ft">Áreas de trabajo</div>
+            <div class="focus-list">
+              <div class="fi">Hematología y bioquímica clínica</div>
+              <div class="fi">Microbiología y parasitología</div>
+              <div class="fi">Uroanálisis y muestras primarias</div>
+              <div class="fi">Anatomía patológica</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCIA -->
+    <section id="experiencia">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">Trayectoria</span>
+          <h2>Experiencia clínica</h2>
+          <p>De prácticas ad honorem a la supervisión de un área de laboratorio, en menos de dos años.</p>
+        </div>
+        <div class="tl">
+          <article class="ev reveal">
+            <div class="when">JUL 2025</div>
+            <h3>Supervisor del área de laboratorio</h3>
+            <div class="org">Clínica Bello Horizonte</div>
+            <p>Toma de muestras y supervisión de insumos, materiales y del trabajo del equipo de laboratorio.</p>
+            <span class="tag">Supervisión</span><span class="tag">Gestión de insumos</span>
+          </article>
+          <article class="ev reveal">
+            <div class="when">FEB — MAR 2025</div>
+            <h3>Técnico en laboratorio</h3>
+            <div class="org">Clínica San Benito · Piura</div>
+            <p>Toma de muestras en pacientes jóvenes y geriátricos, y procesamiento de muestras en el área de laboratorio.</p>
+            <span class="tag">Toma de muestras</span><span class="tag">Procesamiento</span>
+          </article>
+          <article class="ev reveal">
+            <div class="when">2024</div>
+            <h3>Prácticas ad honorem</h3>
+            <div class="org">Clínica Santa Emilia</div>
+            <p>Toma de muestras, lavado y esterilización de materiales, y exámenes de muestras clínicas primarias como uroanálisis y parasitología.</p>
+            <span class="tag">Uroanálisis</span><span class="tag">Parasitología</span><span class="tag">Esterilización</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CREDENCIALES -->
+    <section id="credenciales">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">Formación verificable</span>
+          <h2>Credenciales</h2>
+          <p>Título profesional, diplomados internacionales y cursos especializados.</p>
+        </div>
+        <div class="creds">
+          <article class="cred feat reveal">
+            <div class="badge"><span class="sq"></span> Título a nombre de la Nación</div>
+            <div class="yr">2024 · MINEDU</div>
+            <h3>Profesional Técnico en Laboratorio Clínico y Anatomía Patológica</h3>
+            <div class="by">IESTP Privado “Otto Tonsmann” — Ministerio de Educación del Perú</div>
+            <div class="meta"><span>Estudios 2021–2023</span><span>Título oficial</span></div>
+          </article>
+          <article class="cred reveal">
+            <div class="yr">2023</div>
+            <h3>Diplomado Internacional · Tecnología Médica en Laboratorio</h3>
+            <div class="by">FACOP — Faculdade do Centro Oeste Paulista / SINERGIA</div>
+            <div class="meta"><span>720 h</span><span>24 créditos</span><span>Promedio 19/20</span></div>
+          </article>
+          <article class="cred reveal">
+            <div class="yr">2023</div>
+            <h3>Diplomado · Microbiología y Parasitología en el Laboratorio Clínico</h3>
+            <div class="by">SINERGIA — Desarrollo Profesional</div>
+            <div class="meta"><span>600 h</span><span>6 meses</span><span>CIC-28</span></div>
+          </article>
+          <article class="cred reveal">
+            <div class="yr">2023</div>
+            <h3>Análisis de Muestras Clínicas Primarias</h3>
+            <div class="by">IPAP — Centro de Formación · DREP Piura</div>
+            <div class="meta"><span>40 h</span><span>Prácticas</span></div>
+          </article>
+          <article class="cred reveal">
+            <div class="yr">2022</div>
+            <h3>Toma de Muestras y Análisis de Sangre y Orina</h3>
+            <div class="by">CACIPS — Curso Nacional de Actualización</div>
+            <div class="meta"><span>54 h</span><span>3 créditos</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- HABILIDADES -->
+    <section id="habilidades">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">Aptitudes</span>
+          <h2>Lo que llevo a la mesa de trabajo</h2>
+        </div>
+        <div class="skills">
+          <div class="skg reveal">
+            <div class="h">Técnicas</div>
+            <ul><li>Hematología</li><li>Bioquímica clínica</li><li>Microbiología</li><li>Parasitología</li></ul>
+          </div>
+          <div class="skg reveal">
+            <div class="h">Procesos</div>
+            <ul><li>Toma de muestras</li><li>Procesamiento biológico</li><li>Esterilización</li><li>Uso de equipos</li></ul>
+          </div>
+          <div class="skg reveal">
+            <div class="h">Calidad y seguridad</div>
+            <ul><li>Bioseguridad</li><li>Control de calidad</li><li>Registro y documentación</li><li>Interpretación básica</li></ul>
+          </div>
+          <div class="skg reveal">
+            <div class="h">Profesionales</div>
+            <ul><li>Atención al detalle</li><li>Trabajo en equipo</li><li>Pensamiento crítico</li><li>Ética y confidencialidad</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="wrap reveal">
+        <h2>Construyamos algo confiable.</h2>
+        <p>Disponible para roles en laboratorio clínico. Conversemos sobre cómo aporto al equipo.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="mailto:danchumiii@gmail.com?subject=Contacto%20desde%20tu%20portafolio%20web&body=Hola%20Daniel%2C%0A%0A">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            Escríbeme
+          </a>
+          <a class="btn whatsapp" href="https://wa.me/51991554289?text=Hola%20Daniel%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20conversar." target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.477-.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413z"/></svg>
+            WhatsApp
+          </a>
+          <a class="btn ghost" href="tel:+51991554289">Llamar · 991 554 289</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© <span id="yr"></span> Daniel Chumán Alvarado</span>
+      <span class="mono">Técnico en Laboratorio Clínico · Piura, PE</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+    const nav = document.getElementById('nav');
+    addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 12), {passive:true});
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = Math.min(i % 6, 5) * 55 + 'ms';
+      io.observe(el);
+    });
+  </script>
+</body>
+</html>
